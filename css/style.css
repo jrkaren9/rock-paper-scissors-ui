@@ -1,0 +1,107 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+html, body{
+    height: 100%;
+}
+
+header{
+    background: #727272;
+    color: #fff;
+    height: 80px;
+    line-height: 80px;
+    text-align: center;
+}
+
+header h1{
+    min-width: 300px;
+    margin: 0 auto;
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 30px;
+    line-height: normal;
+}
+
+#container{
+    background-size: cover;
+    background-position: left 80px;
+    position: relative;
+    width: 100%;
+    min-height: calc(100% - 85px - 80px);
+}
+
+#main{
+    padding: 30px 0;
+    text-align: center;
+}
+
+#options div{
+    display: inline-block;
+    margin: 20px;
+}
+
+#options button{
+    border: none;
+    background: none;
+    transition: transform 1s ease-in-out;
+}
+
+#options button:hover{
+    transform: scale(1.2);
+}
+
+button::-moz-focus-inner {
+    border: 0;
+  }  
+
+#options img{
+    margin: 10px 0;
+    border-radius: 50%;
+}
+
+#down{
+    margin: 0 auto;
+    width: 500px;
+}
+
+#down p{
+    font-size: 25px;
+}
+
+#pleft{ 
+    float: left;
+    display: none;
+}
+
+#pright{
+    float: right;
+    display: none;
+}
+
+#message{
+    font: 24px;
+}
+
+footer{
+    background: #727272;
+    color: #fff;
+    height: 85px;
+    overflow: auto;
+    clear: both;
+}
+
+footer p {
+    margin: 5px;
+}
+
+#left{
+    float: left;
+}
+
+#right{
+    float: right;
+}

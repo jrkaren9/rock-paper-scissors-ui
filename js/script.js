@@ -1,3 +1,7 @@
+let playerScore = 0;
+let computerScore = 0;   
+let value = null;
+
 function computerPlay() {
     let random = Math.floor(Math.random()*3);
     if(random == 1) return "Rock";
@@ -6,64 +10,87 @@ function computerPlay() {
 }
 
 function playRound(playerSelection, computerSelection){
-
-    if(!playerSelection.localeCompare(computerSelection)) return 0;
-    if(!playerSelection.localeCompare('rock')){
-        if(!computerSelection.localeCompare('scissors')){
-            return 1;
-        }
-        else{
-            return -1;
-        }
-    }
-    else if(!playerSelection.localeCompare('scissors')){
-        if(!computerSelection.localeCompare('paper')){
-            return 1;
-        }
-        else{
-            return -1;
-        }
-    }
-    else if(!playerSelection.localeCompare('paper')){
-        if(!computerSelection.localeCompare('rock')){
-            return 1;
-        }
-        else{
-            return -1;
-        }
-    }
-    else{
-        return 2;
-    }
+    if(!playerSelection.localeCompare(computerSelection)) return value = null;
+    if(!playerSelection.localeCompare('Rock'))
+        return value = (!computerSelection.localeCompare('Scissors'));
+    else if(!playerSelection.localeCompare('Scissors'))
+        return value = (!computerSelection.localeCompare('Paper'));
+    else if(!playerSelection.localeCompare('Paper'))
+        return value = (!computerSelection.localeCompare('Rock'));
 }
 
 function message(value, playerSelection, computerSelection){
-    if(value==0) return "Draw, try again";
-    if(value==1) return `You win! ${playerSelection} beats ${computerSelection}`;
-    else if(value==2) return "You didn't choose a valid option";
-    else return `You lose, ${computerSelection} beats ${playerSelection}`;
+    if(value==false) return `You lose, ${computerSelection} beats ${playerSelection}`;
+    if(value==true) return `You win! ${playerSelection} beats ${computerSelection}`;
+    else return 'Draw, try again';
 }
+
+function score(playerScore, computerScore){
+
+    ppoints.textContent = playerScore;
+    cpoints.textContent = computerScore;
+
+    const msg = document.querySelector('#message');
+
+    if(playerScore == 5 || computerScore == 5){
+        if(playerScore>computerScore){
+            msg.textContent = 'YOU WIN. Wanna play again?';
+        }
+        else{
+            msg.textContent = 'You lose. Wanna play again?';
+        }
+        return true;
+    }
+}
+
+function reset() {
+    playerScore = 0;
+    computerScore = 0;
+
+    ppoints.textContent = playerScore;
+    cpoints.textContent = computerScore;
+
+    const msg = document.querySelector('#message');
+    msg.textContent = 'Choose Rock, Paper or Scissors';
+}
+/* PRUEBAS */
 
 function game(){
-    let playerScore = 0;
-    let computerScore = 0;
-    for(let i=0; i<5; i++){
-        let playerSelection = prompt("Choose one")
-        let player = playerSelection.toLowerCase();
-        let computerSelection = computerPlay();
-        let computer = computerSelection.toLowerCase();
-        let value = playRound(player, computer);
-    
-        if(value==1){
-            playerScore+=1;
-        } 
-        else if(value==-1){
-            computerScore+=1;
-        }
 
-        console.log(message(value, playerSelection, computerSelection));  
-    }
-    if(playerScore>computerScore) console.log("You've won!");
-    else if(playerScore==computerScore) console.log("It's a tie");
-    else console.log("You've lost :(");
+    start.style.cssText = 'display: none';
+    const displayPlayer = document.querySelector('#pleft');
+    const displayComputer = document.querySelector('#pright');
+    displayPlayer.style.display = 'block';
+    displayComputer.style.display = 'block';
+
+    const msg = document.querySelector('#message');
+
+    const ppoints = document.querySelector('#ppoints');
+    const cpoints = document.querySelector('#cpoints');
+
+    reset();
+
+    const options = document.querySelectorAll('#options div');
+    options.forEach((div) => {
+        div.addEventListener('click', function(e){
+   
+            playRound(e.target.getAttribute('id'), computerPlay());
+
+            if(value==true) playerScore+=1;
+            else if(value==false) computerScore+=1;
+
+            if(playerScore < 5 && computerScore < 5)
+                msg.textContent = message(value, e.target.getAttribute('id'), computerPlay());
+
+            if(score(playerScore, computerScore)){
+                start.style.display = 'inline-block';
+                displayPlayer.style.display = 'none';
+                displayComputer.style.display = 'none';
+            }
+        });
+    });
 }
+
+const start = document.querySelector('#start');
+start.addEventListener('click', game);
+

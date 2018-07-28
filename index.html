@@ -3,8 +3,47 @@
     <head>
         <meta charset="utf-8"/>
         <title>Rock, Paper, Scissors</title>
+        <link rel="stylesheet" type="text/css" href="css/style.css">
     </head>
     <body>
+        <header>
+            <h1>Rock, Paper, Scissors</h1>
+        </header>
+        <div id="container">
+            <div id="main">
+                <h2 id="message">Welcome! Choose Rock, Paper or Scissors</h2>
+                <div id="options">
+                    <div>
+                        <button id="Rock"><img src="images/rock.png" alt="Rock"/></button>
+                    </div>
+                    <div>
+                        <button id="Paper"><img src="images/paper.png" alt="Paper"/></button>
+                    </div>
+                    <div>
+                        <button id="Scissors"><img src="images/scissors.png" alt="Scissors"/></button>
+                    </div>
+                </div>
+                <div id="down">
+                    <div id="pleft">
+                        <p>Player: <span id="ppoints">0</span></p>
+                    </div>
+                    <button id="start">Start Game</button> 
+                    <div id="pright">
+                        <p>Computer: <span id="cpoints">0</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer>
+            <div id="left">
+                <p>Page made by Karen Justo</p>
+                <p>Project from The Odin Project</p>
+            </div>
+            <div id="right">
+                <p>Twitter</p>
+                <p>GitHub</p>
+            </div>
+        </footer>
         <script src="js/script.js"></script>  
     </body>
 </html>
