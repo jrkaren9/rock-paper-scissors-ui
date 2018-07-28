@@ -2,6 +2,12 @@ let playerScore = 0;
 let computerScore = 0;   
 let value = null;
 
+const displayPlayer = document.querySelector('#pleft');
+const displayComputer = document.querySelector('#pright');
+const msg = document.querySelector('#message');
+const ppoints = document.querySelector('#ppoints');
+const cpoints = document.querySelector('#cpoints');
+
 function computerPlay() {
     let random = Math.floor(Math.random()*3);
     if(random == 1) return "Rock";
@@ -10,27 +16,31 @@ function computerPlay() {
 }
 
 function playRound(playerSelection, computerSelection){
-    if(!playerSelection.localeCompare(computerSelection)) return value = null;
-    if(!playerSelection.localeCompare('Rock'))
-        return value = (!computerSelection.localeCompare('Scissors'));
+    console.log(playerSelection);
+    console.log(computerSelection);
+    if(!playerSelection.localeCompare(computerSelection)) value = null;
+    else if(!playerSelection.localeCompare('Rock'))
+        value = (!computerSelection.localeCompare('Scissors'));
     else if(!playerSelection.localeCompare('Scissors'))
-        return value = (!computerSelection.localeCompare('Paper'));
+        value = (!computerSelection.localeCompare('Paper'));
     else if(!playerSelection.localeCompare('Paper'))
-        return value = (!computerSelection.localeCompare('Rock'));
+        value = (!computerSelection.localeCompare('Rock'));
+        
+    if(value==true) playerScore+=1;
+    else if(value==false) computerScore+=1;
+    msg.textContent = message(value, playerSelection, computerSelection);
 }
 
 function message(value, playerSelection, computerSelection){
     if(value==false) return `You lose, ${computerSelection} beats ${playerSelection}`;
     if(value==true) return `You win! ${playerSelection} beats ${computerSelection}`;
-    else return 'Draw, try again';
+    else return `Both picked ${computerSelection}. It's a draw, try again`;
 }
 
 function score(playerScore, computerScore){
 
     ppoints.textContent = playerScore;
     cpoints.textContent = computerScore;
-
-    const msg = document.querySelector('#message');
 
     if(playerScore == 5 || computerScore == 5){
         if(playerScore>computerScore){
@@ -50,47 +60,37 @@ function reset() {
     ppoints.textContent = playerScore;
     cpoints.textContent = computerScore;
 
-    const msg = document.querySelector('#message');
     msg.textContent = 'Choose Rock, Paper or Scissors';
 }
 /* PRUEBAS */
 
+function match(e){
+   
+    if(playerScore < 5 && computerScore < 5){
+        playRound(e.target.getAttribute('id'), computerPlay());  
+    }
+
+    if(score(playerScore, computerScore)){
+        start.style.display = 'inline-block';
+        displayPlayer.style.display = 'none';
+        displayComputer.style.display = 'none';
+    }
+}
+
 function game(){
 
     start.style.cssText = 'display: none';
-    const displayPlayer = document.querySelector('#pleft');
-    const displayComputer = document.querySelector('#pright');
+
     displayPlayer.style.display = 'block';
     displayComputer.style.display = 'block';
-
-    const msg = document.querySelector('#message');
-
-    const ppoints = document.querySelector('#ppoints');
-    const cpoints = document.querySelector('#cpoints');
 
     reset();
 
     const options = document.querySelectorAll('#options div');
     options.forEach((div) => {
-        div.addEventListener('click', function(e){
-   
-            playRound(e.target.getAttribute('id'), computerPlay());
-
-            if(value==true) playerScore+=1;
-            else if(value==false) computerScore+=1;
-
-            if(playerScore < 5 && computerScore < 5)
-                msg.textContent = message(value, e.target.getAttribute('id'), computerPlay());
-
-            if(score(playerScore, computerScore)){
-                start.style.display = 'inline-block';
-                displayPlayer.style.display = 'none';
-                displayComputer.style.display = 'none';
-            }
-        });
+        div.addEventListener('click', match);
     });
 }
 
 const start = document.querySelector('#start');
 start.addEventListener('click', game);
-
