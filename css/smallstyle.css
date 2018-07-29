@@ -1,0 +1,30 @@
+#options{
+    margin-top: 10px;
+}
+#options div{
+    margin: 5px;
+}
+
+#down{
+    width: 200px;
+    overflow: auto;
+}
+
+#pleft{ 
+    margin: 0 auto;
+    width: 200px;
+    display: none;
+}
+
+#pright{
+    margin: 0 auto;
+    width: 200px;
+    float: center;
+    clear: both;
+    display: none;
+}
+
+#options img{
+    margin: 0;
+    width: 100px;
+}

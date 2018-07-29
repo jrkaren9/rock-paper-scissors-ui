@@ -1,0 +1,12 @@
+#container{
+    min-height: calc(100% - 130px - 80px);
+}
+
+footer{
+    height: 130px;
+}
+
+#right{
+    float: left;
+    clear: both;
+}
