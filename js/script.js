@@ -67,7 +67,7 @@ function reset() {
 function match(e){
    
     if(playerScore < 5 && computerScore < 5){
-        playRound(e.target.getAttribute('id'), computerPlay());  
+        playRound(this.getAttribute('id'), computerPlay());  
     }
 
     if(score(playerScore, computerScore)){
@@ -86,9 +86,10 @@ function game(){
 
     reset();
 
-    const options = document.querySelectorAll('#options div');
-    options.forEach((div) => {
-        div.addEventListener('click', match);
+    const options = document.querySelectorAll('#options div button');
+    options.forEach((button) => {
+        button.addEventListener('click', match);
+
     });
 }
 

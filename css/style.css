@@ -10,7 +10,7 @@ html, body{
 }
 
 header{
-    background: #727272;
+    background: #274d6d;
     color: #fff;
     height: 80px;
     line-height: 80px;
@@ -50,7 +50,7 @@ header h1{
     transition: transform 1s ease-in-out;
 }
 
-#options button:hover{
+#options button:hover, #options button:focus {
     transform: scale(1.2);
 }
 
@@ -66,6 +66,19 @@ button::-moz-focus-inner {
 #down{
     margin: 0 auto;
     width: 500px;
+}
+
+#start{
+    padding: 10px;
+    border: 1px solid #274d6d;
+    border-radius: 5px;
+    background: #274d6d;
+    color: #fff;
+    font-weight: bold;
+}
+
+#start:focus{
+    background: #3d77a7;
 }
 
 #down p{
@@ -87,7 +100,8 @@ button::-moz-focus-inner {
 }
 
 footer{
-    background: #727272;
+    padding: 15px;
+    background: #274d6d;
     color: #fff;
     height: 85px;
     overflow: auto;
