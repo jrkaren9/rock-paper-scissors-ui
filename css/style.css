@@ -72,7 +72,8 @@ button:focus {
 }
 
 #down{
-    margin: 0 auto 30px;
+    margin: 0 auto;
+    padding-bottom: 20px;
     width: 500px;
     overflow: hidden;
 }
