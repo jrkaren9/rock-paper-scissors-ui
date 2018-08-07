@@ -16,8 +16,7 @@ function computerPlay() {
 }
 
 function playRound(playerSelection, computerSelection){
-    console.log(playerSelection);
-    console.log(computerSelection);
+
     if(!playerSelection.localeCompare(computerSelection)) value = null;
     else if(!playerSelection.localeCompare('Rock'))
         value = (!computerSelection.localeCompare('Scissors'));
@@ -65,7 +64,7 @@ function reset() {
 /* PRUEBAS */
 
 function match(e){
-   
+    
     if(playerScore < 5 && computerScore < 5){
         playRound(this.getAttribute('id'), computerPlay());  
     }
@@ -75,6 +74,14 @@ function match(e){
         displayPlayer.style.display = 'none';
         displayComputer.style.display = 'none';
     }
+}
+
+function selection(){
+    this.classList.add('selection');
+}
+
+function removeTransition(){
+    this.classList.remove('selection');
 }
 
 function game(){
@@ -87,10 +94,14 @@ function game(){
     reset();
 
     const options = document.querySelectorAll('#options div button');
-    options.forEach((button) => {
-        button.addEventListener('click', match);
 
-    });
+    options.forEach(button => {
+        button.addEventListener('mouseover', selection);
+        button.addEventListener('focus', selection);
+        button.addEventListener('click', match);
+        button.addEventListener('focusout', removeTransition);
+        button.addEventListener('mouseout', removeTransition);
+    });      
 }
 
 const start = document.querySelector('#start');
